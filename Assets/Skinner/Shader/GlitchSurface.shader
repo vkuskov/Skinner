@@ -7,10 +7,6 @@ Shader "Skinner/Glitch"
         _Smoothness("Smoothness", Range(0, 1)) = 0.5
         _Metallic("Metallic", Range(0, 1)) = 0
 
-        [Header(Glitch Thresholds)]
-        _EdgeThreshold("Edge Length", Range(0.001, 2)) = 1
-        _AreaThreshold("Triangle Area", Range(0.001, 0.1)) = 1
-
         [Header(Self Illumination)]
         _BaseHue("Base Hue", Range(0, 1)) = 0
         _HueRandomness("Hue Randomness", Range(0, 1)) = 0.2
@@ -18,10 +14,10 @@ Shader "Skinner/Glitch"
         _Brightness("Brightness", Range(0, 6)) = 0.8
         _EmissionProb("Probability", Range(0, 1)) = 0.2
 
-        [Header(Color Animation)]
+        [Header(Color Modifier (By Time))]
+        _ModDuration("Duration", Range(0, 1)) = 0.5
         _BrightnessOffs("Brightness Offset", Range(0, 6)) = 1.0
         _HueShift("Hue Shift", Range(-1, 1)) = 0.2
-        _AttackLength("Duration", Range(0, 1)) = 0.5
 
         [HideInInspector] _PositionBuffer("", 2D) = ""{}
     }

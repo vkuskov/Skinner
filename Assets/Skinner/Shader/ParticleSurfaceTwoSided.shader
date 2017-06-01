@@ -14,9 +14,9 @@ Shader "Skinner/Particle/Two-Sided, Non-Textured"
         _Brightness("Brightness", Range(0, 6)) = 0.8
         _EmissionProb("Probability", Range(0, 1)) = 0.2
 
-        [Header(Illumination Modifier)]
-        _SpeedToLightMin("Min Speed", Float) = 1.5
-        _SpeedToLightMax("Max Speed", Float) = 3
+        [Header(Color Modifier (By Speed))]
+        _CutoffSpeed("Cutoff Speed", Float) = 0.5
+        _SpeedToIntensity("Sensitivity", Float) = 1
         _BrightnessOffs("Brightness Offset", Range(0, 6)) = 1.0
         _HueShift("Hue Shift", Range(-1, 1)) = 0.2
 
@@ -38,7 +38,7 @@ Shader "Skinner/Particle/Two-Sided, Non-Textured"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            #pragma target 3.0
+            #pragma target 4.0
             #include "ParticleMotion.cginc"
             ENDCG
         }

@@ -88,6 +88,18 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
+        name: _PreviousPositionBuffer
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _PreviousRotationBuffer
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
         name: _RotationBuffer
       second:
         m_Texture: {fileID: 0}
@@ -102,19 +114,22 @@ Material:
     m_Floats:
     - first:
         name: _BaseHue
-      second: 0.5
+      second: 0
     - first:
         name: _Brightness
-      second: 1.88
+      second: 2.29
     - first:
         name: _BrightnessOffs
-      second: 6
+      second: 4.1
     - first:
         name: _BumpScale
       second: 1
     - first:
         name: _Cutoff
       second: 0.5
+    - first:
+        name: _CutoffSpeed
+      second: 0.65
     - first:
         name: _DetailNormalMapScale
       second: 1
@@ -123,7 +138,7 @@ Material:
       second: 0
     - first:
         name: _EmissionProb
-      second: 0.1
+      second: 0.049
     - first:
         name: _GlossMapScale
       second: 1
@@ -135,10 +150,10 @@ Material:
       second: 1
     - first:
         name: _HueRandomness
-      second: 0.189
+      second: 0.112
     - first:
         name: _HueShift
-      second: 0.61
+      second: -0.53
     - first:
         name: _Metallic
       second: 0.473
@@ -166,6 +181,9 @@ Material:
     - first:
         name: _SpecularHighlights
       second: 1
+    - first:
+        name: _SpeedToIntensity
+      second: 0.39
     - first:
         name: _SpeedToLightMax
       second: 3.6

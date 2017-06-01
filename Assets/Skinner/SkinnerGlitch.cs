@@ -19,15 +19,45 @@ namespace Skinner
         [Tooltip("Reference to an effect source.")]
         SkinnerSource _source;
 
-        /// Length of the frame history.
+        /// Length of the frame history buffer.
         public int historyLength {
             get { return _historyLength; }
             set { _historyLength = value; _reconfigured = true; }
         }
 
         [SerializeField]
-        [Tooltip("Length of the frame history.")]
+        [Tooltip("Length of the frame history buffer.")]
         int _historyLength = 256;
+
+        /// Determines how an effect element inherit a source velocity.
+        public float velocityScale {
+            get { return _velocityScale; }
+            set { _velocityScale = value; }
+        }
+
+        [SerializeField, Range(0, 1)]
+        [Tooltip("Determines how an effect element inherit a source velocity.")]
+        float _velocityScale = 0.2f;
+
+        /// Triangles that have longer edges than this value will be culled.
+        public float edgeThreshold {
+            get { return _edgeThreshold; }
+            set { _edgeThreshold = value; }
+        }
+
+        [SerializeField]
+        [Tooltip("Triangles that have longer edges than this value will be culled.")]
+        float _edgeThreshold = 0.75f;
+
+        /// Triangles that have larger area than this value will be culled.
+        public float areaThreshold {
+            get { return _areaThreshold; }
+            set { _areaThreshold = value; }
+        }
+
+        [SerializeField]
+        [Tooltip("Triangles that have larger area than this value will be culled.")]
+        float _areaThreshold = 0.02f;
 
         /// Determines the random number sequence used for the effect.
         public int randomSeed {
@@ -38,16 +68,6 @@ namespace Skinner
         [SerializeField]
         [Tooltip("Determines the random number sequence used for the effect.")]
         int _randomSeed = 0;
-
-        /// Determines how the effect elements inherit the source velocity.
-        public float velocityScale {
-            get { return _velocityScale; }
-            set { _velocityScale = value; }
-        }
-
-        [SerializeField, Range(0, 1)]
-        [Tooltip("Determines how the effect elements inherit the source velocity.")]
-        float _velocityScale = 0.2f;
 
         #endregion
 
@@ -136,6 +156,8 @@ namespace Skinner
             // Update the custom property block.
             var block = _renderer.propertyBlock;
             block.SetTexture("_PositionBuffer", _kernel.GetLastBuffer(Buffers.Position));
+            block.SetFloat("_EdgeThreshold", _edgeThreshold);
+            block.SetFloat("_AreaThreshold", _areaThreshold);
             block.SetFloat("_RandomSeed", _randomSeed);
             block.SetFloat("_BufferOffset", Time.frameCount);
 
@@ -154,6 +176,8 @@ namespace Skinner
         void OnValidate()
         {
             _historyLength = Mathf.Clamp(_historyLength, 1, 1024);
+            _edgeThreshold = Mathf.Max(_edgeThreshold, 0);
+            _areaThreshold = Mathf.Max(_areaThreshold, 0);
         }
 
         void OnDestroy()
